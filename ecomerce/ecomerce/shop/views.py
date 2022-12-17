@@ -3,14 +3,17 @@ from django.contrib.auth.decorators import login_required
 
 from ecomerce.shop.cart import Cart
 from ecomerce.shop.forms import PhotoCreateForm
-from ecomerce.shop.models import Product
-
+from ecomerce.shop.models import Product, Photo
 
 
 # Create your views here.
 
 def shop(request):
-    return render(request, 'shop.html')
+    photos = Photo.objects.all()
+    context = {"photos": photos}
+    return render(request, template_name="shop.html", context=context)
+
+
 
 def single_product(request):
     return render(request, 'product-single.html')
