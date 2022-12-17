@@ -1,6 +1,7 @@
 from django.core import validators
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -8,8 +9,9 @@ class AppUser(models.Model):
     MIN_LEN_USERNAME = 2
 
     username = models.CharField(
+        unique=True,
         max_length=30,
-        validators = (
+        validators=(
             validators.MinLengthValidator(MIN_LEN_USERNAME),
         )
     )
@@ -17,3 +19,6 @@ class AppUser(models.Model):
     email = models.EmailField(
         unique=True,
     )
+
+
+

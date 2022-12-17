@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Winkel - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Winkel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -39,7 +39,8 @@
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
+						    						    <span class="text">{{ request.user.username }}</span>
+
 					    </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
 						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
@@ -56,7 +57,7 @@
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
+	       <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 	          <li class="nav-item dropdown">
@@ -67,13 +68,21 @@
                 <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
                 <a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a>
               </div>
-            </li>
+           </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
-              <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Sing In</a></li>
+                   {% if not user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Sing In</a></li>
                 <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Sing Up</a></li>
+                   {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Log Out</a></li>
+                {% endif %}
+                    {% if user.is_superuser %}
+                     <li class="nav-item"><a href="{% url 'add-photo' %}" class="nav-link">Add Product</a></li>
 	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                {% endif %}
 
 	        </ul>
 	      </div>

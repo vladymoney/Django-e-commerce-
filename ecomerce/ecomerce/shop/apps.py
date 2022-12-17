@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class ShopConfig(AppConfig):
-    name = 'ecomerce.shop'
+class PhotosConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "ecomerce.shop"
